@@ -1,0 +1,14 @@
+$ python count.py 100
+14
+$ python count.py 100000000
+14285714
+
+real	0m5.085s
+user	0m4.754s
+sys	0m0.062s
+$ ./count 100000000
+14285714
+
+real	0m0.063s
+user	0m0.059s
+sys	0m0.002s

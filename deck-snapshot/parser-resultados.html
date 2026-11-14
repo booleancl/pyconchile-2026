@@ -1,0 +1,22 @@
+<section id="parser-resultados" data-transition="fade" style="background:#222444;color:#F4F1EA;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:700;line-height:1.1">100.000 respuestas validadas</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#3b3d57;border-radius:16px;padding:40px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#c8cad7">PYDANTIC 1 · COMPILADO</p>
+<p style="font-size:120px;font-weight:700;line-height:1.05;color:#F4F1EA">2,0 s</p>
+<p style="font-size:32px;color:#c8cad7">20 µs por respuesta</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#0640f6;border-radius:16px;padding:40px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#F4F1EA">PYDANTIC 2 · NÚCLEO EN RUST</p>
+<p style="font-size:120px;font-weight:700;line-height:1.05;color:#ffffff">0,32 s</p>
+<p style="font-size:32px;color:#F4F1EA">3,2 µs por respuesta</p>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:32px">
+<p style="font-size:32px;line-height:1.4;color:#c8cad7">Las dos versiones: <b>95.020 válidas · 4.980 rechazadas</b>. Mismo trabajo.</p>
+<p style="font-size:44px;font-weight:700;color:#ff7485">V2: 6× más rápido</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1440px;font-size:24px;color:#8a8d9e">Solo se mide la validación · respuestas simuladas con semilla fija · tiempos de este equipo</p>
+<img src="/_blob/f17a9f15db0a9523cfe696944f9429df" alt="Boolean" style="position:absolute;right:128px;bottom:44px;width:160px;height:56px;object-fit:contain">
+<aside>11:15–12:45. Ejecutar V1 y V2 en vivo en dos terminales y comparar con las cifras de la slide (medianas de 5 ejecuciones en el equipo del ensayo, un Apple M1). Si en vivo salen distintas, decirlo y usar las de la terminal. Al terminar, volver a las tres predicciones de la slide anterior y marcar cuáles se cumplieron. Lo primero que hay que señalar no es el tiempo sino que ambas versiones aceptan y rechazan exactamente las mismas respuestas (95.020 y 4.980 con la semilla fija): es el mismo trabajo. Medido en el ensayo: V1 1.10.27 compilado 2,0 s (20 µs por respuesta), V2 2.14.3 0,32 s (3,2 µs), unas 6 veces. Con pydantic.v1 en Python puro: 2,66 s, 8,3 veces; con 10.000 respuestas el factor es el mismo, pero terminan en 0,19 s y 0,03 s, por eso usamos 100.000. Honestidad importante: las ruedas de Pydantic 1 en PyPI vienen compiladas con Cython (el script lo muestra como compiled: True), por eso la diferencia es menor que con pydantic.v1. Eso refuerza la tesis: V1 ya delegaba en código nativo vía Cython; V2 cambió la arquitectura completa. Conexión con el negocio: 3 µs por respuesta es irrelevante frente a segundos de inferencia en una llamada; importa cuando procesas lotes, re-parseas en streaming o atiendes mucho tráfico.</aside>
+</section>

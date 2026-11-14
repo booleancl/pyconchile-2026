@@ -1,0 +1,8 @@
+$ python llm_parser.py v1 responses.jsonl
+Pydantic 1.10.27 (compiled: True)
+responses: 100,000   valid: 95,020   invalid: 4,980
+time: 1.91 s   (19.1 µs per response)
+first error:
+1 validation error for Order
+__root__
+  Unterminated string starting at: line 1 column 159 (char 158) (type=value_error.jsondecode; msg=Unterminated string starting at; doc={"order_id": "ORD-0000028", "customer": "Demo Corp", "currency": "USD", "priority": "low", "created_at": "2026-10-26T06:09:00", "items": [{"sku": "SKU-1001", "descriptio; pos=158; lineno=1; colno=159)

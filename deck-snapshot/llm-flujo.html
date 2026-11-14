@@ -1,0 +1,18 @@
+<section id="llm-flujo" data-transition="fade" style="background:#222444;color:#F4F1EA;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:700;line-height:1.1">Del texto del modelo a un objeto tipado</h2>
+<div style="display:flex;gap:16px;align-items:center">
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:20px 24px;border-radius:12px">El LLM responde JSON</p>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#ff7485"></x-shape>
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:20px 24px;border-radius:12px">Parsear</p>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#ff7485"></x-shape>
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:20px 24px;border-radius:12px">Validar tipos y reglas</p>
+<x-shape kind="arrow-right" style="width:48px;height:24px;background:#ff7485"></x-shape>
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:20px 24px;border-radius:12px">Objeto, o error manejable</p>
+</div>
+<div style="display:flex;gap:40px;align-items:center">
+<p style="flex:1;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;line-height:1.5;color:#E6E1D6;background:#090910;border:2px solid #3b3d57;border-radius:16px;padding:32px">class LineItem(BaseModel):<br>&#160;&#160;&#160;&#160;sku: str<br>&#160;&#160;&#160;&#160;quantity: int = Field(gt=0)<br><br>class Order(BaseModel):<br>&#160;&#160;&#160;&#160;customer: str<br>&#160;&#160;&#160;&#160;items: list[LineItem]<br><br>order = Order.model_validate_json(response)</p>
+<p style="width:420px;font-size:32px;line-height:1.4;color:#c8cad7">Pasos 2 y 3 en una sola llamada, ejecutada por el <span style="color:#ff7485">núcleo en Rust</span>.</p>
+</div>
+<img src="/_blob/f17a9f15db0a9523cfe696944f9429df" alt="Boolean" style="position:absolute;right:128px;bottom:44px;width:160px;height:56px;object-fit:contain">
+<aside>7:00–7:45.El patrón de cualquier aplicación con LLM: el modelo devuelve JSON, la aplicación lo convierte en datos tipados y comprueba tipos, campos obligatorios y reglas antes de la lógica de negocio. Los SDK aceptan modelos Pydantic directamente: OpenAI .parse() con response_format (desde ago. 2024), Anthropic messages.parse() con output_format. Si preguntan "¿para qué validar si el proveedor garantiza el esquema?": el esquema cubre la forma, no las reglas de negocio (gt=0, validaciones cruzadas); el modo estricto tiene límites; los modelos abiertos no siempre lo garantizan. Transición: "Antes de la demo, veamos el caso concreto y qué pasa por dentro".</aside>
+</section>

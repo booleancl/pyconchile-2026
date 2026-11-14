@@ -1,0 +1,28 @@
+<section id="teoria" data-transition="fade" style="background:#222444;color:#F4F1EA;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:700;line-height:1.1">Qué pasa con cada respuesta</h2>
+<div style="display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:32px;font-weight:600;color:#5fddff">Pydantic 1</h3>
+<div style="display:flex;gap:20px;align-items:center">
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:24px 28px;border-radius:12px">Texto JSON</p>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#5fddff"></x-shape>
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:24px 28px;border-radius:12px">json.loads crea un dict de Python</p>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#5fddff"></x-shape>
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:24px 28px;border-radius:12px">V1 valida campo a campo, con objetos de Python</p>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#5fddff"></x-shape>
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:24px 28px;border-radius:12px">Order</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:32px;font-weight:600;color:#ff7485">Pydantic 2</h3>
+<div style="display:flex;gap:20px;align-items:center">
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:24px 28px;border-radius:12px">Texto JSON</p>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#ff7485"></x-shape>
+<p style="flex:2;font-size:28px;line-height:1.3;background:#0640f6;color:#ffffff;padding:24px 28px;border-radius:12px">pydantic-core en Rust: parsea y valida, sin dict intermedio</p>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#ff7485"></x-shape>
+<p style="flex:1;font-size:28px;line-height:1.3;background:#3b3d57;padding:24px 28px;border-radius:12px">Order</p>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.4;color:#c8cad7">En V1, cada campo de cada respuesta se valida paso a paso, con objetos de Python. En V2 se cruza la frontera una vez: entra texto, sale el objeto.</p>
+<img src="/_blob/f17a9f15db0a9523cfe696944f9429df" alt="Boolean" style="position:absolute;right:128px;bottom:44px;width:160px;height:56px;object-fit:contain">
+<aside>8:45–10:00. La teoría de la demo, en una sola idea. En V1, parse_raw primero usa json.loads (que es C, rápido) para crear diccionarios y listas de Python; después el código de validación recorre en Python cada campo de cada pedido: comprueba tipos, que la cantidad sea mayor que 0, que la moneda sea CLP o USD, convierte la fecha. Ese recorrido se repite en cada respuesta. En V2, model_validate_json entrega el texto a pydantic-core: el parseo y la validación ocurren en Rust, siguiendo el core schema que se construyó una sola vez a partir de las anotaciones, y Python recibe el objeto final. Conectar con la slide de delegar: es la misma idea de delegar, y la frontera se cruza una vez por respuesta, no una vez por campo. Matiz si preguntan: el Pydantic 1 de PyPI estaba compilado con Cython, así que su validación no era Python interpretado puro; aun así seguía trabajando con objetos de Python en cada paso.</aside>
+</section>

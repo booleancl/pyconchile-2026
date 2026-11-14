@@ -1,0 +1,55 @@
+<section id="ejecucion" data-transition="fade" style="background:#222444;color:#F4F1EA;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:700;line-height:1.1">¿Qué hizo Python en esos segundos?</h2>
+<div style="display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:32px;font-weight:600;color:#5fddff">Python (CPython): interpreta mientras ejecuta</h3>
+<div style="display:flex;gap:16px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#3b3d57;border-radius:12px;padding:20px 16px">
+<p style="font-size:28px;font-weight:600">Código fuente</p>
+<p style="font-size:24px;line-height:1.3;color:#c8cad7">tu archivo .py</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#5fddff;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#3b3d57;border-radius:12px;padding:20px 16px">
+<p style="font-size:28px;font-weight:600">Parser</p>
+<p style="font-size:24px;line-height:1.3;color:#c8cad7">texto a árbol (AST)</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#5fddff;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#3b3d57;border-radius:12px;padding:20px 16px">
+<p style="font-size:28px;font-weight:600">Compilador</p>
+<p style="font-size:24px;line-height:1.3;color:#c8cad7">árbol a bytecode</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#5fddff;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#3b3d57;border-radius:12px;padding:20px 16px">
+<p style="font-size:28px;font-weight:600">Bytecode</p>
+<p style="font-size:24px;line-height:1.3;color:#c8cad7">instrucciones simples</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#5fddff;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#3b3d57;border:3px solid #5fddff;border-radius:12px;padding:17px 13px">
+<p style="font-size:28px;font-weight:600">Máquina virtual</p>
+<p style="font-size:24px;line-height:1.3;color:#c8cad7">programa que ejecuta el bytecode, ×N</p>
+</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:32px;font-weight:600;color:#ff7485">Rust: traduce antes de ejecutar</h3>
+<div style="display:flex;gap:16px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#3b3d57;border-radius:12px;padding:20px 16px">
+<p style="font-size:28px;font-weight:600">Código fuente</p>
+<p style="font-size:24px;line-height:1.3;color:#c8cad7">tu archivo .rs</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#ff7485;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#3b3d57;border-radius:12px;padding:20px 16px">
+<p style="font-size:28px;font-weight:600">Compilador</p>
+<p style="font-size:24px;line-height:1.3;color:#c8cad7">traduce todo, una vez</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#ff7485;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#3b3d57;border-radius:12px;padding:20px 16px">
+<p style="font-size:28px;font-weight:600">Instrucciones de CPU</p>
+<p style="font-size:24px;line-height:1.3;color:#c8cad7">el procesador las ejecuta directo</p>
+</div>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.4;color:#c8cad7">En un bucle pequeño, cada vuelta repite el trabajo de la máquina virtual. La demo mide <b>esta tarea</b>, no "el lenguaje".</p>
+<img src="/_blob/f17a9f15db0a9523cfe696944f9429df" alt="Boolean" style="position:absolute;right:128px;bottom:44px;width:160px;height:56px;object-fit:contain">
+<p style="position:absolute;left:128px;bottom:64px;width:1440px;font-size:24px;line-height:1.3;color:#a9acc0"><b>AST (Abstract Syntax Tree, árbol de sintaxis abstracta):</b> árbol que representa la estructura del código.<br><b>Bytecode:</b> lista de instrucciones simples, hechas para la máquina virtual y no para el procesador.<br><b>Máquina virtual:</b> programa en C que ejecuta el bytecode, como una CPU (Central Processing Unit) hecha en software.</p>
+<aside>2:45–3:45. Responder la pregunta que quedó abierta en la demo: ¿por qué tanta diferencia? Hablamos de CPython, el intérprete de referencia, escrito en C: python es un programa que lee otro programa. Recorrer la cadena de izquierda a derecha. El parser lee el texto y construye un árbol. Su nombre técnico es AST, por Abstract Syntax Tree (árbol de sintaxis abstracta), y representa la estructura del código. El compilador recorre ese árbol y genera bytecode: instrucciones simples, pensadas para la máquina virtual y no para el procesador. La máquina virtual lee esas instrucciones una por una y ejecuta cada una. Aclarar qué significa "máquina virtual": no es VirtualBox ni Docker. Es un programa, escrito en C, que dentro de Python hace por software lo que una CPU hace por hardware: tomar la siguiente instrucción y ejecutarla. El glosario del pie de la slide resume AST, bytecode y máquina virtual. Las tres primeras etapas ocurren una vez; la última se repite en cada vuelta del bucle. En Rust, el compilador traduce todo antes de ejecutar, y en ejecución quedan solo instrucciones de CPU (Central Processing Unit, el procesador). Es una simplificación a propósito: existen otros intérpretes de Python (por ejemplo PyPy, con compilación en tiempo de ejecución) y CPython también optimiza mientras corre. Limitación a decir en voz alta: la demo mide esta tarea, no el lenguaje. No entrar en LLVM ni ensamblador. Transición: "Veamos cómo se ve ese bytecode de verdad".</aside>
+</section>

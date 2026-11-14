@@ -1,0 +1,14 @@
+<section id="cuando" data-transition="fade" style="background:#222444;color:#F4F1EA;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:700;line-height:1.1">¿Cuándo importa el núcleo nativo?</h2>
+<table style="font-size:28px;color:#E6E1D6">
+<tr><th style="width:55%;text-align:left">Situación</th><th style="width:45%;text-align:left">¿Importa?</th></tr>
+<tr><td>Una llamada aislada al modelo</td><td style="color:#8a8d9e">Casi nada: domina la inferencia</td></tr>
+<tr style="background:#2d2f52"><td>Extracción por lotes: miles de documentos</td><td style="color:#ff7485">Sí: la CPU se acumula</td></tr>
+<tr><td>Streaming: re-parsear JSON por fragmento</td><td style="color:#ff7485">Sí: el parseo se repite</td></tr>
+<tr style="background:#2d2f52"><td>Agentes con muchas llamadas a herramientas</td><td style="color:#ff7485">Sí, de forma moderada</td></tr>
+<tr><td>Servidor con alta concurrencia</td><td style="color:#ff7485">Sí: menos CPU por petición</td></tr>
+</table>
+<p style="font-size:44px;font-weight:600;line-height:1.25">Rust no acelera al modelo. Acelera el trabajo que se repite <span style="color:#ff7485">alrededor</span> de él.</p>
+<img src="/_blob/f17a9f15db0a9523cfe696944f9429df" alt="Boolean" style="position:absolute;right:128px;bottom:44px;width:160px;height:56px;object-fit:contain">
+<aside>16:00–16:45.Esta es la lámina de rigor: deja claro qué no hace Rust. Usar el número de la demo: unos microsegundos por respuesta con V2, frente a segundos de inferencia en una llamada al modelo. En una llamada aislada, la diferencia no se nota; el beneficio aparece con volumen (los 100.000 pedidos), repetición (el streaming re-parsea en cada fragmento) o concurrencia. La tabla es análisis propio, no una cifra publicada.</aside>
+</section>

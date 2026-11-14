@@ -1,0 +1,17 @@
+$ python llm_stream.py
+ 12 chars | waiting for 'customer'...
+ 24 chars | waiting for 'customer'...
+ 36 chars | {'customer': 'ACME Ltda.'}
+ 48 chars | {'customer': 'ACME Ltda.', 'priority': 'high'}
+ 60 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': []}
+ 72 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': []}
+ 84 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': []}
+ 96 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': [{'sku': 'SKU-1001', 'quantity': 12}]}
+108 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': [{'sku': 'SKU-1001', 'quantity': 12}]}
+120 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': [{'sku': 'SKU-1001', 'quantity': 12}]}
+132 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': [{'sku': 'SKU-1001', 'quantity': 12}, {'sku': 'SKU-4120', 'quantity': 3}]}
+144 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': [{'sku': 'SKU-1001', 'quantity': 12}, {'sku': 'SKU-4120', 'quantity': 3}]}
+156 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': [{'sku': 'SKU-1001', 'quantity': 12}, {'sku': 'SKU-4120', 'quantity': 3}]}
+164 chars | {'customer': 'ACME Ltda.', 'priority': 'high', 'items': [{'sku': 'SKU-1001', 'quantity': 12}, {'sku': 'SKU-4120', 'quantity': 3}], 'notes': 'Deliver before Friday'}
+
+complete: {'customer': 'ACME Ltda.', 'priority': 'high', 'items': [{'sku': 'SKU-1001', 'quantity': 12}, {'sku': 'SKU-4120', 'quantity': 3}], 'notes': 'Deliver before Friday'}

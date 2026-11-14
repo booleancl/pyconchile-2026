@@ -1,0 +1,22 @@
+<section id="v1v2" data-transition="fade" style="background:#F4F1EA;color:#222444;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:700;line-height:1.1">Misma interfaz, distinto motor</h2>
+<div style="display:flex;gap:64px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;align-items:stretch">
+<h3 style="font-size:44px;font-weight:600;color:#0640f6">V1 · hasta 2023</h3>
+<p style="font-size:32px;background:#FFFDF8;border:2px solid #0640f6;border-radius:12px;padding:24px 32px">BaseModel + anotaciones <span style="color:#0640f6">(Python)</span></p>
+<x-shape kind="arrow-down" style="width:32px;height:48px;background:#8a8d9e;align-self:center"></x-shape>
+<p style="font-size:32px;background:#FFFDF8;border:2px solid #0640f6;border-radius:12px;padding:24px 32px">Validación y serialización <span style="color:#0640f6">(Python)</span></p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;align-items:stretch">
+<h3 style="font-size:44px;font-weight:600;color:#B8344A">V2 · desde jun. 2023</h3>
+<p style="font-size:32px;background:#FFFDF8;border:2px solid #0640f6;border-radius:12px;padding:24px 32px">BaseModel + anotaciones <span style="color:#0640f6">(Python)</span></p>
+<x-shape kind="arrow-down" style="width:32px;height:48px;background:#8a8d9e;align-self:center"></x-shape>
+<p style="font-size:32px;background:#FFFDF8;border:2px dashed #8a8d9e;border-radius:12px;padding:24px 32px">core schema: describe qué validar</p>
+<x-shape kind="arrow-down" style="width:32px;height:48px;background:#8a8d9e;align-self:center"></x-shape>
+<p style="font-size:32px;background:#222444;color:#F4F1EA;border-radius:12px;padding:24px 32px">pydantic-core <span style="color:#ff7485">(Rust + PyO3)</span> valida y serializa</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1440px;font-size:24px;color:#5a5f75">Plan V2 (jul. 2022): 4x–50x más rápido que V1.9.1 en los benchmarks de pydantic-core. Mide tu propio caso.</p>
+<img src="/_blob/8068083b2bedcea25b2494185e2c3e72" alt="Boolean Academia" style="position:absolute;right:128px;bottom:44px;width:160px;height:56px;object-fit:contain">
+<aside>6:00–7:00.Mensaje central: V2 no es "Pydantic escrito en Rust". La capa Python sigue existiendo y su trabajo principal es construir el core schema a partir de tus anotaciones; el motor nativo ejecuta ese esquema. El usuario no escribe Rust. Fecha: Pydantic 2.0, 30 de junio de 2023. La cifra 4x–50x es un rango publicado por el proyecto sobre sus propios benchmarks; no prometer un número universal. Colvin contó esta historia en PyCon US 2023 (22 abr.), cuando V2 aún estaba en alfa.</aside>
+</section>

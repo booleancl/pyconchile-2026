@@ -1,0 +1,8 @@
+$ python llm_parser.py v2 responses.jsonl
+Pydantic 2.14.3 (Rust core)
+responses: 100,000   valid: 95,020   invalid: 4,980
+time: 0.31 s   (3.1 µs per response)
+first error:
+1 validation error for Order
+  Invalid JSON: EOF while parsing a string at line 1 column 169 [type=json_invalid, input_value='{"order_id": "ORD-000002..."SKU-1001", "descriptio', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/json_invalid
