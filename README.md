@@ -4,6 +4,8 @@ Material de la charla de 20 minutos presentada en Python Conf Chile 2026 por Gon
 
 **Tesis:** Python y Rust no son alternativas excluyentes. Python conserva la interfaz y la productividad; los componentes críticos pueden correr en código nativo. Es una tradición que viene de C (NumPy) y que Rust continúa con PyO3 y maturin. Cruzar la frontera entre lenguajes tiene un costo, y conviene medirlo.
 
+**Slides:** https://claude.ai/artifact/3oNSviarwznVuQRZcQsiVz
+
 ## Contenido
 
 | Carpeta | Qué contiene |
